@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electron Orbit Quest – ภารกิจพิชิตการจัดเรียงอิเล็กตรอน</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     หน้า: Landing / หน้าแรก
+============================================================ -->
+<div id="page-landing" class="page active">
+  <div class="stars-bg"></div>
+
+  <header class="landing-header">
+    <div class="atom-anim" id="hero-atom">
+      <div class="nucleus"><span>e⁻</span></div>
+      <div class="orbit orbit-k"><div class="electron e1"></div></div>
+      <div class="orbit orbit-l">
+        <div class="electron e2"></div>
+        <div class="electron e3"></div>
+        <div class="electron e4"></div>
+      </div>
+      <div class="orbit orbit-m">
+        <div class="electron e5"></div>
+        <div class="electron e6"></div>
+      </div>
+    </div>
+    <div class="landing-titles">
+      <div class="app-eyebrow">⚛ วิชาเคมี ม.ปลาย</div>
+      <h1 class="app-title">Electron Orbit Quest</h1>
+      <p class="app-sub">ภารกิจพิชิตการจัดเรียงอิเล็กตรอน</p>
+      <p class="app-tagline">เรียนรู้ · ทดลอง · และพิชิตภารกิจ</p>
+    </div>
+  </header>
+
+  <section class="landing-form card">
+    <h2>ลงทะเบียนนักเรียน</h2>
+    <div class="form-group">
+      <label for="inp-name">ชื่อ–นามสกุล</label>
+      <input id="inp-name" type="text" placeholder="เช่น สมชาย ใจดี" />
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="inp-class">ชั้น</label>
+        <input id="inp-class" type="text" placeholder="เช่น ม.4/1" />
+      </div>
+      <div class="form-group">
+        <label for="inp-no">เลขที่</label>
+        <input id="inp-no" type="number" placeholder="1" min="1" max="60" />
+      </div>
+    </div>
+    <div class="btn-group-col">
+      <button class="btn-primary" id="btn-start-learn">🚀 เริ่มเรียนรู้ (แนะนำ)</button>
+      <button class="btn-secondary" id="btn-start-quiz">⚡ โหมดทดสอบเร็ว</button>
+      <button class="btn-ghost" id="btn-guide">📖 คู่มือการเล่น</button>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <p>สร้างโดย <strong>คุณครูสุพักตร์ศิริ พืชสิงห์</strong><br>โรงเรียนโพธิ์ศรีสว่างวิทยา</p>
+    <button class="btn-admin-tiny" id="btn-admin-open">Admin</button>
+  </footer>
+</div>
+
+<!-- ============================================================
+     หน้า: คู่มือการเล่น
+============================================================ -->
+<div id="page-guide" class="page">
+  <div class="page-header">
+    <button class="btn-back" id="btn-guide-back">← กลับ</button>
+    <h2>📖 คู่มือการเล่น</h2>
+  </div>
+  <div class="guide-content card">
+    <div class="guide-section">
+      <h3>🎯 เป้าหมาย</h3>
+      <p>เรียนรู้และฝึกทักษะการจัดเรียงอิเล็กตรอน ผ่าน 10 ด่านเกม ตั้งแต่พื้นฐานจนถึงขั้นสูง</p>
+    </div>
+    <div class="guide-section">
+      <h3>❤️ ระบบหัวใจ</h3>
+      <p>แต่ละด่านมี <strong>3 หัวใจ</strong> ตอบผิดหัวใจหายไป 1 ดวง ถ้าหัวใจหมดต้องเริ่มด่านนั้นใหม่</p>
+    </div>
+    <div class="guide-section">
+      <h3>💡 คำใบ้</h3>
+      <p>กดปุ่ม "คำใบ้" ได้ทุกข้อ แต่คะแนนข้อนั้นจะลดลง 2 คะแนน</p>
+    </div>
+    <div class="guide-section">
+      <h3>📊 คะแนน</h3>
+      <p>แต่ละข้อมี 10 คะแนน ตอบถูกโดยไม่ใช้ใบ้ได้ 10 คะแนน ใช้ใบ้ได้ 8 คะแนน</p>
+    </div>
+    <div class="guide-section">
+      <h3>🏆 ระดับผลลัพธ์</h3>
+      <ul>
+        <li>⭐⭐⭐ <strong>Electron Master</strong> — 90–100%</li>
+        <li>⭐⭐ <strong>Atomic Explorer</strong> — 75–89%</li>
+        <li>⭐ <strong>Orbit Trainee</strong> — 60–74%</li>
+        <li>🔄 <strong>Try Again Hero</strong> — ต่ำกว่า 60%</li>
+      </ul>
+    </div>
+    <div class="guide-section">
+      <h3>📱 วิธีเล่นบนมือถือ</h3>
+      <p>รองรับการแตะ ลาก และวาง บนมือถือและแท็บเล็ตได้ทุกรุ่น</p>
+    </div>
+    <button class="btn-primary" id="btn-guide-close">เริ่มเล่นเลย!</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     หน้า: Mini Lesson
+============================================================ -->
+<div id="page-lesson" class="page">
+  <div class="page-header">
+    <button class="btn-back" id="btn-lesson-back">← กลับ</button>
+    <h2 id="lesson-title">บทเรียน</h2>
+  </div>
+  <div id="lesson-body" class="lesson-body card"></div>
+  <div class="lesson-actions">
+    <button class="btn-secondary" id="btn-lesson-example">🔬 ลองทำตัวอย่าง</button>
+    <button class="btn-primary" id="btn-lesson-start">🚀 เริ่มภารกิจ!</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     หน้า: เกมหลัก
+============================================================ -->
+<div id="page-game" class="page">
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-left">
+      <span class="hud-label">ด่าน</span>
+      <span id="hud-level" class="hud-value">1</span>
+    </div>
+    <div class="hud-hearts" id="hud-hearts">❤️❤️❤️</div>
+    <div class="hud-right">
+      <span class="hud-label">คะแนน</span>
+      <span id="hud-score" class="hud-value">0</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+    <span id="progress-text" class="progress-text">0 / 0</span>
+  </div>
+
+  <!-- พื้นที่โจทย์ -->
+  <div id="game-area" class="game-area card"></div>
+
+  <!-- ปุ่มควบคุม -->
+  <div class="game-controls">
+    <button class="btn-hint" id="btn-hint">💡 คำใบ้</button>
+    <button class="btn-check" id="btn-check">✅ ตรวจคำตอบ</button>
+    <button class="btn-next" id="btn-next" style="display:none">➡️ ถัดไป</button>
+  </div>
+  <div class="game-controls-row2">
+    <button class="btn-ghost btn-sm" id="btn-review-lesson">📖 ดูบทเรียน</button>
+    <button class="btn-ghost btn-sm" id="btn-restart-level">🔄 เริ่มด่านใหม่</button>
+  </div>
+
+  <!-- ป๊อปอัพเฉลย -->
+  <div id="feedback-popup" class="feedback-popup hidden">
+    <div class="feedback-inner">
+      <div id="feedback-icon" class="feedback-icon"></div>
+      <div id="feedback-msg" class="feedback-msg"></div>
+      <div id="feedback-visual" class="feedback-visual"></div>
+      <div id="feedback-exp" class="feedback-exp"></div>
+      <button id="btn-feedback-ok" class="btn-primary">ถัดไป ➡️</button>
+    </div>
+  </div>
+
+  <!-- ป๊อปอัพหัวใจหมด -->
+  <div id="gameover-popup" class="gameover-popup hidden">
+    <div class="gameover-inner card">
+      <div class="go-icon">💔</div>
+      <h3>หัวใจหมดแล้ว!</h3>
+      <p>ต้องเริ่มด่านนี้ใหม่อีกครั้ง</p>
+      <button class="btn-primary" id="btn-go-retry">🔄 เริ่มด่านใหม่</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     หน้า: ผลสรุปด่าน
+============================================================ -->
+<div id="page-level-result" class="page">
+  <div class="result-card card">
+    <div class="result-icon" id="result-icon">🎉</div>
+    <h2 id="result-title">ผ่านด่านแล้ว!</h2>
+    <div class="result-score">
+      <span id="result-score-val">0</span>
+      <span class="result-score-max" id="result-score-max">/ 0</span>
+    </div>
+    <div class="result-stars" id="result-stars"></div>
+    <p id="result-msg"></p>
+    <div class="result-actions">
+      <button class="btn-primary" id="btn-next-level">➡️ ด่านถัดไป</button>
+      <button class="btn-secondary" id="btn-retry-level">🔄 ลองใหม่</button>
+      <button class="btn-ghost" id="btn-back-home">🏠 หน้าแรก</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     หน้า: Certificate / ใบประกาศสำเร็จ
+============================================================ -->
+<div id="page-cert" class="page">
+  <div class="cert-bg"></div>
+  <div class="cert-card" id="cert-card">
+    <div class="cert-header">
+      <div class="cert-atom-deco"></div>
+      <h1 class="cert-game-title">⚛ Electron Orbit Quest</h1>
+      <p class="cert-subtitle">ใบรับรองผลการเรียนรู้</p>
+    </div>
+    <div class="cert-body">
+      <p class="cert-text">ขอรับรองว่า</p>
+      <h2 class="cert-name" id="cert-name">ชื่อนักเรียน</h2>
+      <p class="cert-class-info">
+        ชั้น <span id="cert-class"></span> เลขที่ <span id="cert-no"></span>
+      </p>
+      <p class="cert-text">ได้ผ่านภารกิจ <strong>Electron Orbit Quest</strong><br>เรื่อง <em>การจัดเรียงอิเล็กตรอน ไอออน และขนาดอะตอม</em><br>สำเร็จด้วยผลการทดสอบ</p>
+      <div class="cert-score-block">
+        <span class="cert-score-val" id="cert-total-score">0</span>
+        <span class="cert-score-denom" id="cert-total-max">/ 0</span>
+        <div class="cert-rank" id="cert-rank">Electron Master</div>
+      </div>
+      <div class="cert-breakdown" id="cert-breakdown"></div>
+      <p class="cert-text-sm">นักเรียนสามารถอธิบายความสัมพันธ์ระหว่างจำนวนอิเล็กตรอน การเกิดไอออน<br>และแนวโน้มขนาดอะตอมได้</p>
+    </div>
+    <div class="cert-footer">
+      <div class="cert-sig">
+        <div class="cert-sig-line"></div>
+        <p><strong>คุณครูสุพักตร์ศิริ พืชสิงห์</strong></p>
+        <p class="cert-school">โรงเรียนโพธิ์ศรีสว่างวิทยา</p>
+        <p class="cert-date" id="cert-date"></p>
+      </div>
+    </div>
+  </div>
+  <div class="cert-actions">
+    <button class="btn-primary" id="btn-save-result">💾 บันทึกผล</button>
+    <button class="btn-secondary" id="btn-dl-csv">⬇️ ดาวน์โหลด CSV</button>
+    <button class="btn-ghost" id="btn-cert-home">🏠 กลับหน้าแรก</button>
+  </div>
+  <p class="cert-hint">📸 แคปหน้าจอเพื่อส่งครูได้เลย!</p>
+</div>
+
+<!-- ============================================================
+     หน้า: Admin Dashboard
+============================================================ -->
+<div id="page-admin" class="page">
+  <div class="page-header">
+    <button class="btn-back" id="btn-admin-back">← ออก</button>
+    <h2>🔐 Admin Dashboard</h2>
+  </div>
+  <div class="admin-stats card">
+    <div class="stat-grid">
+      <div class="stat-box"><span class="stat-val" id="stat-count">0</span><span class="stat-lbl">นักเรียน</span></div>
+      <div class="stat-box"><span class="stat-val" id="stat-avg">0</span><span class="stat-lbl">เฉลี่ย%</span></div>
+      <div class="stat-box"><span class="stat-val" id="stat-max">0</span><span class="stat-lbl">สูงสุด%</span></div>
+      <div class="stat-box"><span class="stat-val" id="stat-min">0</span><span class="stat-lbl">ต่ำสุด%</span></div>
+    </div>
+  </div>
+  <div class="admin-table-wrap card">
+    <div class="admin-table-header">
+      <h3>รายชื่อนักเรียน</h3>
+      <div class="admin-btns">
+        <button class="btn-secondary btn-sm" id="btn-admin-dl">⬇️ CSV</button>
+        <button class="btn-danger btn-sm" id="btn-admin-clear">🗑️ ล้างทั้งหมด</button>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table id="admin-table">
+        <thead>
+          <tr>
+            <th>ชื่อ</th><th>ชั้น</th><th>เลขที่</th>
+            <th>คะแนน</th><th>%</th><th>ระดับ</th><th>วันที่</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="admin-note">⚠️ ข้อมูลเก็บในเครื่องนี้เท่านั้น (localStorage)</p>
+</div>
+
+<!-- ============================================================
+     Modal: Admin Login
+============================================================ -->
+<div id="modal-admin-login" class="modal hidden">
+  <div class="modal-inner card">
+    <h3>🔐 รหัสผ่านครู</h3>
+    <input id="inp-admin-pw" type="password" placeholder="รหัสผ่าน" />
+    <div class="btn-group">
+      <button class="btn-primary" id="btn-admin-login">เข้าสู่ระบบ</button>
+      <button class="btn-ghost" id="btn-admin-cancel">ยกเลิก</button>
+    </div>
+    <p id="admin-login-err" class="err-msg hidden">รหัสผ่านไม่ถูกต้อง</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     Modal: คู่มือ (popup)
+============================================================ -->
+<div id="modal-hint" class="modal hidden">
+  <div class="modal-inner card">
+    <h3>💡 คำใบ้</h3>
+    <p id="modal-hint-text"></p>
+    <button class="btn-primary" id="btn-hint-close">ปิด (ลดคะแนน 2 คะแนน)</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
