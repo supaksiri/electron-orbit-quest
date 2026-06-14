@@ -1137,3 +1137,73 @@ tr:hover td { background: var(--card2); }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+/* ── Level Select Page ───────────────────────── */
+.lvlsel-content {
+  padding: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.lvlsel-hint {
+  text-align: center;
+  color: var(--text3);
+  font-size: .9rem;
+  margin-bottom: 1.2rem;
+}
+.lvlsel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: .9rem;
+}
+.lvlsel-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1rem .9rem;
+  cursor: pointer;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.lvlsel-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(79,142,247,.25);
+}
+.lvlsel-card-num {
+  font-size: .78rem;
+  color: var(--text3);
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+.lvlsel-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.lvlsel-card-info {
+  font-size: .78rem;
+  color: var(--text3);
+}
+.lvlsel-card-badge {
+  align-self: flex-start;
+  font-size: .7rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: .2rem;
+}
+.badge-boss {
+  background: rgba(239,68,68,.15);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,.4);
+}
+.badge-normal {
+  background: rgba(79,142,247,.12);
+  color: var(--blue);
+  border: 1px solid rgba(79,142,247,.3);
+}
+.lvlsel-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: .1rem;
+}

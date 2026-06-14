@@ -1411,10 +1411,49 @@ $('btn-admin-clear').addEventListener('click', () => {
   }
 });
 
+/* ── Level Select ────────────────────────────────*/
+const LEVEL_ICONS = ['⚛️','🔵','⬆️','🔬','⚡','🎯','👾','🔄','📏','📐'];
+
+function showLevelSelect() {
+  const grid = $('lvlsel-grid');
+  grid.innerHTML = LEVELS_CONFIG.map((cfg, i) => {
+    const icon = LEVEL_ICONS[i] || '🎮';
+    const qCount = cfg.isBoss ? 30 : (cfg.questionIds ? cfg.questionIds.length : 0);
+    const isBoss = cfg.isBoss;
+    const prevScore = state.levelScores[cfg.id];
+    const scoreTxt = prevScore
+      ? `✅ ${prevScore.score}/${prevScore.max} คะแนน`
+      : `${qCount} ข้อ · ${cfg.maxScore} คะแนน`;
+    return `<div class="lvlsel-card" onclick="pickLevel(${cfg.id})">
+      <div class="lvlsel-card-icon">${icon}</div>
+      <div class="lvlsel-card-num">ด่าน ${cfg.id}</div>
+      <div class="lvlsel-card-name">${cfg.name}</div>
+      <div class="lvlsel-card-info">${scoreTxt}</div>
+      <span class="lvlsel-card-badge ${isBoss ? 'badge-boss' : 'badge-normal'}">${isBoss ? '👾 Boss' : '📚 ปกติ'}</span>
+    </div>`;
+  }).join('');
+  showPage('page-level-select');
+}
+
+window.pickLevel = function(levelId) {
+  const cfg = LEVELS_CONFIG.find(l => l.id === levelId);
+  if (!cfg) return;
+  if (cfg.lessonId) {
+    // มีบทเรียน → แสดงบทเรียนก่อน แล้วค่อยเล่น
+    showLesson(cfg.lessonId, () => startLevelGame(levelId));
+  } else {
+    startLevelGame(levelId);
+  }
+};
+
 /* ── Landing buttons ────────────────────────────*/
 $('btn-start-learn').addEventListener('click', () => {
   if (!validateStudent()) return;
   startLearnFlow(1);
+});
+$('btn-level-select').addEventListener('click', () => {
+  if (!validateStudent()) return;
+  showLevelSelect();
 });
 $('btn-start-quiz').addEventListener('click', () => {
   if (!validateStudent()) return;
@@ -1422,6 +1461,7 @@ $('btn-start-quiz').addEventListener('click', () => {
 });
 $('btn-guide').addEventListener('click', () => showPage('page-guide'));
 $('btn-guide-back').addEventListener('click', () => showPage('page-landing'));
+$('btn-lvlsel-back').addEventListener('click', () => showPage('page-landing'));
 $('btn-guide-close').addEventListener('click', () => showPage('page-landing'));
 
 /* ── Game Controls ───────────────────────────────*/
